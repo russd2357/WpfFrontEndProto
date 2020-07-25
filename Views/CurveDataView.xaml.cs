@@ -7,7 +7,7 @@ namespace WpfFrontEndProto.Views
     {
         public CurveDataView()
         {
-           //InitializeComponent();
+           InitializeComponent();
         }
         
     }
