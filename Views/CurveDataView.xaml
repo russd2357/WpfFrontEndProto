@@ -38,7 +38,15 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Orientation="Horizontal">
-         </StackPanel>
+            <syncfusion:SfChart>
+                <syncfusion:SfChart.PrimaryAxis>
+                    <syncfusion:CategoryAxis />
+                </syncfusion:SfChart.PrimaryAxis>
+                <syncfusion:SfChart.SecondaryAxis>
+                    <syncfusion:NumericalAxis/>
+                </syncfusion:SfChart.SecondaryAxis>
+            </syncfusion:SfChart>
+        </StackPanel>
 
     </Grid>
 </Window>
