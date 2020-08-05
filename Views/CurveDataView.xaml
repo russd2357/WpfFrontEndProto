@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:syncfusion="clr-namespace:Syncfusion.UI.Xaml.Charts;assembly=Syncfusion.SfChart.WPF"
         xmlns:local="clr-namespace:WpfFrontEndProto.Views"
-        xmlns:chart="http://schemas.syncfusion.com/wpf" x:Class="WpfFrontEndProto.Views.CurveDataView"
+        xmlns:chart="http://schemas.syncfusion.com/wpf" x:Class="WpfFrontEndProto.Views.CurveDataView" x:Name="ViewData"
         mc:Ignorable="d"
         Title="Viwew Curve Data" Height="400" Width="720">
     <Grid Width="700">
@@ -30,8 +30,8 @@
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" >
-                <Button x:Name="QueryButton" Width="70" Content="Get Data" Click="{Binding QueryCommand}" />
-                <Button x:Name="CloseButton" Width="70" Margin="10,0,0,0" Content="OK" Click="{Binding CloseCommand}" />
+                <Button x:Name="QueryButton" Width="70" Content="Get Data" Command="{Binding QueryCommand}" />
+                <Button x:Name="CloseButton" Width="70" Margin="10,0,0,0" Content="OK" Command="{Binding CloseCommand, Mode=OneWay}" CommandParameter="{Binding ElementName=ViewData}" />
             </StackPanel>
         </StackPanel>
 

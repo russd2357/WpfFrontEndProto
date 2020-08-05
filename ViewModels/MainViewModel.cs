@@ -14,16 +14,16 @@ namespace WpfFrontEndProto.ViewModels
             set { SetProperty(ref _isBusy, value ); }
         }
 
-        public IAsyncCommand ViewDataCommand { get; private set; }
-        public IAsyncCommand SeedDataCommand { get; private set; }
+        public IAsyncCommand<object> ViewDataCommand { get; private set; }
+        public IAsyncCommand<object> SeedDataCommand { get; private set; }
 
         public MainViewModel()
         {
-            ViewDataCommand = new AsyncCommand(ExecuteViewDataAsync, CanExecute);
-            SeedDataCommand = new AsyncCommand(ExecuteSeedDataAsync, CanExecute);
+            ViewDataCommand = new AsyncCommand<object>(ExecuteViewDataAsync, CanExecute);
+            SeedDataCommand = new AsyncCommand<object>(ExecuteSeedDataAsync, CanExecute);
         }
 
-        private async Task ExecuteViewDataAsync()
+        private async Task ExecuteViewDataAsync(object arg = null)
         {
             IsBusy = true;
             //MessageBox.Show("Show View Data view");
@@ -31,7 +31,7 @@ namespace WpfFrontEndProto.ViewModels
             IsBusy = false;
         }
 
-        private async Task ExecuteSeedDataAsync()
+        private async Task ExecuteSeedDataAsync(object arg = null)
         {
             IsBusy = true;
             MessageBox.Show("Show Seed Data view");

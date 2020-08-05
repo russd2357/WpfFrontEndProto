@@ -7,6 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\seed_icon.png" />
+    <None Remove="Images\view_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\seed_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\view_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Syncfusion.SfChart.WPF" Version="18.2.0.45" />
     <PackageReference Include="Syncfusion.SfInput.WPF" Version="18.2.0.46" />
     <PackageReference Include="Syncfusion.Shared.WPF" Version="18.2.0.46" />

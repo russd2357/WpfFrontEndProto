@@ -8,11 +8,11 @@
         Title="View Data" Height="200" Width="400">
     <Grid Width="350">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="Auto">
-            <Button Width="75" Height="75" Command="{Binding ViewDataCommand}">
-                <!--<Image Source="Images/view_icon.png"></Image>-->
+            <Button Width="75" Height="75" Command="{Binding ViewDataCommand}" ToolTip="View Data">
+                <Image Source="/Images/view_icon.png"></Image>
             </Button>
-            <Button Width="75" Height="75" Margin="10,0,0,0" Content="Seed Data" Command="{Binding SeedDataCommand}">
-               <!-- <Image Source="Images/seed_icon.png"></Image>-->
+            <Button Width="75" Height="75" Margin="10,0,0,0" Command="{Binding SeedDataCommand}" ToolTip="Seed Data">
+                <Image Source="/Images/seed_icon.png"></Image>
             </Button>
         </StackPanel>
     </Grid>

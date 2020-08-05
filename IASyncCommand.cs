@@ -1,11 +1,12 @@
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using System.Threading.Tasks;
 
 namespace WpfFrontEndProto
 {
-    public interface IAsyncCommand : ICommand
+    //TODO  Create a generic version of this
+    public interface IAsyncCommand<T> : ICommand
     {
-        Task ExecuteAsync();
+        Task ExecuteAsync(T arg);
         bool CanExecute();
     }
 }

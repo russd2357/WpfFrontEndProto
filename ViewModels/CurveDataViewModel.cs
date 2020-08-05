@@ -1,11 +1,21 @@
 using System;
+using System.Windows;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WpfFrontEndProto.Models;
+using WpfFrontEndProto;
 
 namespace WpfFrontEndProto.ViewModels
 {
 	public class CurveDataViewModel : ViewModelBase
 	{
+		private bool _isBusy;
+		public bool IsBusy
+		{
+			get { return _isBusy;  }
+			set { SetProperty(ref _isBusy, value); }
+		}
+
 		private DateTime _startTime;
 		public DateTime StartTime
 		{
@@ -39,6 +49,34 @@ namespace WpfFrontEndProto.ViewModels
 		{
 			get { return _devices;  }
 			set { SetProperty(ref _devices, value);  }
+		}
+
+		public IAsyncCommand<object> QueryCommand { get; private set; }
+		public IAsyncCommand<Window> CloseCommand { get; private set; }
+
+
+		public CurveDataViewModel()
+		{
+			QueryCommand = new AsyncCommand<object>(ExecuteQueryDataCommand, CanExecute);
+			CloseCommand = new AsyncCommand<Window>(ExecuteCloseCommand, CanExecute);
+		}
+
+		private async Task ExecuteQueryDataCommand(object arg = null)
+		{
+			IsBusy = true;
+			IsBusy = false;
+		}
+
+		private async Task ExecuteCloseCommand(Window view)
+		{
+			IsBusy = true;
+			view.Close();
+			IsBusy = false;
+		}
+
+		private bool CanExecute()
+		{
+			return !IsBusy;
 		}
 	}
 }
