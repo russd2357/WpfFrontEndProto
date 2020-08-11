@@ -1,11 +1,22 @@
 using System;
 using WpfFrontEndProto.Views;
+using SimpleInjector;
 
-public static class ViewUtils
+
+namespace WpfFrontEndProto
 {
-    public static void ShowCurveDataModalView()
+    public class ViewUtils : IViewUtils
     {
-        CurveDataView curveDataView = new CurveDataView();
-        curveDataView.ShowDialog();
+        private readonly Container _container;
+
+        public ViewUtils(Container container)
+		{
+            _container = container;
+		}
+        public void ShowCurveDataModalView()
+        {
+            var curveDataView = _container.GetInstance< CurveDataView>();
+            curveDataView.ShowDialog();
+        }
     }
 }

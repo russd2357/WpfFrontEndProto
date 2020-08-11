@@ -21,11 +21,12 @@ namespace WpfFrontEndProto.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainViewModel _viewModel = new MainViewModel();
-        public MainWindow()
+        private MainViewModel _viewModel;
+        public MainWindow(MainViewModel vm)
         {
-            this.DataContext = _viewModel;
+            _viewModel = vm;
             InitializeComponent();
+            this.DataContext = _viewModel;
         }
     }
 }

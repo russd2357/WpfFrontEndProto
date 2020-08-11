@@ -36,7 +36,7 @@ namespace WpfFrontEndProto.Services
 				{
 					result.Add(new SensorReading { Timestamp = time, Value = (double)Math.Round( min + (max - min)*rand.NextDouble(), 2) });
 					sign = DateTime.Now.Millisecond % 2 == 0 ? 1 : -1;
-					time = time.AddSeconds((int)(5 + sign * rand.NextDouble()));
+					time = time.AddMinutes((int)(5 + sign * rand.NextDouble()));
 				}
 
 			});

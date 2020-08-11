@@ -7,42 +7,56 @@
         xmlns:local="clr-namespace:WpfFrontEndProto.Views"
         xmlns:chart="http://schemas.syncfusion.com/wpf" x:Class="WpfFrontEndProto.Views.CurveDataView" x:Name="ViewData"
         mc:Ignorable="d"
-        Title="Viwew Curve Data" Height="400" Width="720">
-    <Grid Width="700">
+        Title="View Data" Height="400" Width="1000">
+    <Grid Width="980">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition MaxWidth="175" />
+            <ColumnDefinition  />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Vertical">
-            <Label Content="Query Curve Data" FontFamily="SegoeUI" FontSize="16" />
-            <Label Content="Device Id" Margin="0,20,0,0" FontFamily="SegoeUI" FontSize="12" />
-            <TextBox x:Name="DeviceId" Width="100" Margin="-90,0,0,0" />
-            <Label Content="Start TIme" Margin="0,10,0,0" FontFamily="SegoeUI" FontSize="12" />
-            <DatePicker x:Name="StartDate"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <chart:SfTimePicker x:Name="StartTime" AllowNull="True" Height="23" Value="12:00" Watermark="Pick a time" Width="120"/>
-            </StackPanel>
-            <Label Content="End TIme"  FontFamily="SegoeUI" FontSize="12" Margin="0,10,0,0" />
-            <DatePicker x:Name="EndDate"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <chart:SfTimePicker x:Name="EndTime" AllowNull="True" Height="23" Value="12:00" Watermark="Pick a time" Width="120"/>
-            </StackPanel>
-            
+        <StackPanel Grid.Column="0" Width="150" Orientation="Vertical" HorizontalAlignment="Center">
+            <Label HorizontalAlignment="Center" Content="Query Curve Data" FontFamily="SegoeUI" FontSize="16" />
+            <Label Content="Device Id"  Margin="0,20,0,0" FontFamily="SegoeUI" FontSize="12" />
+            <TextBox x:Name="DeviceId" Width="100" Text="{Binding DeviceId, Mode=TwoWay}" HorizontalAlignment="Left"/>
+            <Label Content="Start Time" Margin="0,10,0,0" FontFamily="SegoeUI" FontSize="12" />
+            <DatePicker x:Name="StartDate" SelectedDate="{Binding StartTime, Mode=TwoWay}"/>
+
+            <chart:SfTimePicker 
+                x:Name="StartTime" 
+                AllowNull="True" 
+                Height="23" 
+                Watermark="Pick a time" 
+                Width="120" 
+                Value="{Binding StartClockTime, Mode=TwoWay}" 
+                HorizontalAlignment="Left"/>
+
+            <Label Content="End Time"  FontFamily="SegoeUI" FontSize="12" Margin="0,10,0,0" HorizontalAlignment="Left" />
+            <DatePicker x:Name="EndDate" SelectedDate="{Binding EndTime, Mode=TwoWay}"/>
+            <chart:SfTimePicker x:Name="EndTime" 
+                    AllowNull="True" 
+                    Height="23" 
+                    Watermark="Pick a time"
+                    Width="120" 
+                    Value="{Binding EndClockTime, Mode=TwoWay}" HorizontalAlignment="Left" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" >
                 <Button x:Name="QueryButton" Width="70" Content="Get Data" Command="{Binding QueryCommand}" />
                 <Button x:Name="CloseButton" Width="70" Margin="10,0,0,0" Content="OK" Command="{Binding CloseCommand, Mode=OneWay}" CommandParameter="{Binding ElementName=ViewData}" />
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Orientation="Horizontal">
-            <syncfusion:SfChart Margin="10,0,0,0">
+        <StackPanel Name="Container" Grid.Column="1" Orientation="Horizontal">
+            <syncfusion:SfChart Margin="10,0,0,0" HorizontalAlignment="Stretch" Width="800">
                 <syncfusion:SfChart.PrimaryAxis>
-                    <syncfusion:CategoryAxis />
+                    <syncfusion:DateTimeAxis />
                 </syncfusion:SfChart.PrimaryAxis>
                 <syncfusion:SfChart.SecondaryAxis>
                     <syncfusion:NumericalAxis/>
                 </syncfusion:SfChart.SecondaryAxis>
+                <syncfusion:LineSeries 
+                    ItemsSource="{Binding QueryResults}" 
+                    XBindingPath="Timestamp" 
+                    YBindingPath="Value">
+                </syncfusion:LineSeries>
             </syncfusion:SfChart>
         </StackPanel>
 

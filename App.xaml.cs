@@ -14,5 +14,6 @@ namespace WpfFrontEndProto
     /// </summary>
     public partial class App : Application
     {
+       
     }
 }

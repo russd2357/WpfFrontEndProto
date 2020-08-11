@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using WpfFrontEndProto.ViewModels;
 
@@ -5,11 +6,13 @@ namespace WpfFrontEndProto.Views
 {
     public partial class CurveDataView : Window
     {
-        private CurveDataViewModel _viewModel = new CurveDataViewModel();
-        public CurveDataView()
+        private CurveDataViewModel _viewModel;
+        public CurveDataView(CurveDataViewModel vm)
         {
-           this.DataContext = _viewModel;
-           InitializeComponent();
+            _viewModel = vm;
+            InitializeComponent();
+            this.DataContext = _viewModel;
         }
-    }
+
+	}
 }
