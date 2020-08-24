@@ -7,7 +7,7 @@ using WpfFrontEndProto.Services.Interfaces;
 
 namespace WpfFrontEndProto.Services
 {
-	public class CurveDataService : ICurveDataService
+	public class LocalCurveDataService : ICurveDataService
 	{
 		public async Task<List<SensorReading>> GetCurveDataAsync(string id, DateTime start, DateTime end)
 		{
@@ -20,6 +20,14 @@ namespace WpfFrontEndProto.Services
 				return null;
 			}
 		}
+
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+		public async Task SeedCurveDataAsync(string id, List<SensorReading> data)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+		{
+			return;
+		}
+
 
 		private async Task<List<SensorReading>> GetCurveAsync(string id, DateTime start, DateTime end)
 		{

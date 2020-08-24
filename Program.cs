@@ -22,7 +22,7 @@ public static class Program
 		var container = new Container();
 
 		// Register services
-		container.Register<Services.Interfaces.ICurveDataService, Services.CurveDataService>();
+		container.Register<Services.Interfaces.ICurveDataService, Services.FileCurveDataService>();
 
 		// Register viewmodels
 		container.Register<MainViewModel>();

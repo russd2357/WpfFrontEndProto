@@ -101,12 +101,34 @@ namespace WpfFrontEndProto.ViewModels
 			{
 				StartTime = StartTime.Date + StartClockTime.TimeOfDay;
 				EndTime = EndTime.Date + EndClockTime.TimeOfDay;
-				QueryResults = await _dataService.GetCurveDataAsync(DeviceId, StartTime, EndTime);
+				var raw = await _dataService.GetCurveDataAsync(DeviceId, StartTime, EndTime);
+				var ret = new List<SensorReading>();
+
+				// we're going to filter the curve to a max of 1000 points
+				var factor = (int)(raw.Count / 400);
+				for (int i = 0; i <= raw.Count; i++)
+				{
+					if (i == 0 || i % factor == 0)
+					{
+						ret.Add(raw[i]);
+					}
+					continue;
+				}
+				
+				// make sure the last point is in the curve.
+				if (ret.IndexOf(raw[^1]) == -1)
+				{
+					ret.Add(raw[^1]);
+				}
+				
+				QueryResults = ret;
 			}
 			IsBusy = false;
 		}
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 		private async Task ExecuteCloseCommand(Window view)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 		{
 			IsBusy = true;
 			view.Close();
